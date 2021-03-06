@@ -11,8 +11,6 @@ Vue.prototype.axios = axios
 
 Vue.use(VueResource)
 
-Vue.http.options.root = 'http://localhost:3000/'
-
 new Vue({
   el: '#app',
   render: h => h(App),

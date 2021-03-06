@@ -13,11 +13,6 @@
         >
           <button class="btn btn-sm btn-outline-secondary" type="button">Pokemons</button> 
         </router-link>
-         <router-link
-          :to="'/addPokemon'"
-        >
-          <button class="btn btn-sm btn-outline-secondary" type="button">Add pokemon</button> 
-        </router-link>
 
       </form>
     </nav>

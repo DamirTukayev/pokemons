@@ -6,7 +6,7 @@
 
             <router-link
                 tag="li"
-                v-for="pokemons in idPokemonServer"
+                v-for="pokemons in 20"
                 :to="'/pokemon/' + pokemons"
                 :key="pokemons"
             >
@@ -14,22 +14,16 @@
                     Pokemon {{ pokemons }}
                 </a>
             </router-link>
+
         </ul>
     </div>
 </template>
 
 <script>
-    import axios from 'axios'
     export default {
         data () {
             return {
-                idPokemonServer: null
             }
-        },
-        mounted() {
-            axios
-                .get('http://localhost:3000/pokemons')
-                .then(response => this.idPokemonServer = response.data.length)
         }
     }
 

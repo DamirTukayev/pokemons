@@ -1,13 +1,15 @@
 <template>
     <div>
         <h1>Pokemon id {{ id }}</h1>
-        <button class="btn btn-sm btn-default mb-2" @click="goBackToPokemons">Back</button>
+        <button class="btn btn-sm btn-info mb-2" @click="goBackToPokemons">Back</button>
         <hr>
-        <ul class="list-group">
-            <li class="list-group-item">Имя:  {{pokemons[id-1].name}}</li>
-            <li class="list-group-item">Рост: {{pokemons[id-1].height}}</li>
-            <li class="list-group-item">Вес: {{pokemons[id-1].weight}}</li>
-            <li class="list-group-item">Атака: {{pokemons[id-1].power}}</li>
+        <img  :src="imageUrl + id + '.svg'" alt="">
+
+        <ul class="list-group mt-3">
+            <li class="list-group-item">Имя: {{pokemons.name}}</li>
+            <li class="list-group-item">Вес: {{pokemons.weight}}</li>
+            <li class="list-group-item">Рост: {{pokemons.height}}</li>
+            <!-- <pre>{{pokemons.sprites.other.dream_world.front_default}}</pre> -->
         </ul>
     </div>
 
@@ -17,23 +19,26 @@
     import axios from 'axios'
     export default {
          data() {
-          return {
-            id: this.$route.params['id'],
-            pokemons: []
-
-          }
-         },
+            return {
+                id: this.$route.params['id'],
+                imageUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/',
+                pokemons:[]
+            }
+          },
         methods: {
           goBackToPokemons() {
               this.$router.push('/pokemons')
           }
          },
         created() {
-                axios
-                    .get('http://localhost:3000/pokemons')
-                    .then(response => this.pokemons = response.data)
-            }
-    }  
+
+                 axios
+                    .get(`https://pokeapi.co/api/v2/pokemon/${this.id}` )
+                    .then(response => (this.pokemons = response.data))
+         }
+        }
+
+    
     
 </script>
 
